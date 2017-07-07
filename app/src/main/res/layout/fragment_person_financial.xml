@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zucc.circle.summerwork.Fragment.PersonFinacialFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/action_financial"
+                android:layout_width="360dp"
+                android:layout_height="300dp"
+                android:src="@drawable/tupian2"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:id="@+id/action_invest"
+                android:layout_width="360dp"
+                android:layout_height="300dp"
+                android:src="@drawable/tupian1"
+                android:layout_below="@+id/action_financial"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>
