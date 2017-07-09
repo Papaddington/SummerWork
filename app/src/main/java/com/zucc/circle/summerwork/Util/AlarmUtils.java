@@ -46,11 +46,9 @@ public class AlarmUtils {
     public static void setAlarm(Context context, int month, int day, int hour, int minute, int id, String tips) {
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Calendar calendar = Calendar.getInstance();
-        long intervalMillis = 0;
         calendar.set(calendar.get(Calendar.YEAR), month, day, hour, minute, 0);
         Log.d("aaa", "年" + calendar.get(Calendar.YEAR));
         Intent intent = new Intent(ALARM_ACTION);
-        intent.putExtra("intervalMillis", intervalMillis);
         intent.putExtra("msg", tips);
         intent.putExtra("id", id);
         PendingIntent sender = PendingIntent.getBroadcast(context, id, intent, PendingIntent

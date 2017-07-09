@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_collapseParallaxMultiplier="1.0"
+    tools:context="com.zucc.circle.summerwork.Activity.AddIncomeActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/add_person_plan_fan"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerVertical="true"
+                android:background="#00ffffff"
+                android:onClick="fan"
+                android:padding="9dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/fan" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="添加收入记录"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <com.rey.material.widget.TextView
+                android:id="@+id/btn_check_person_plan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView"
+                android:layout_alignBottom="@+id/textView"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:text="确定"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical">
+
+        <com.rey.material.widget.TextView
+            android:id="@+id/income_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="款项名称"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et_income_title"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/income_title"
+            android:layout_alignBottom="@+id/income_title"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="43dp"
+            android:hint="输入款项"
+            android:textSize="20sp"></EditText>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="5dp"
+        android:background="#9a9a9a" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical">
+
+        <com.rey.material.widget.TextView
+            android:id="@+id/income_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="金额"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et_income_money"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/income_money"
+            android:layout_alignBottom="@+id/income_money"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="43dp"
+            android:hint="输入金额"
+            android:textSize="20sp"></EditText>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="5dp"
+        android:background="#9a9a9a" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical">
+
+        <com.rey.material.widget.TextView
+            android:id="@+id/income_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="收入类型"
+            android:textSize="20sp" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/sp_income_type"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_alignBaseline="@+id/income_type"
+            android:layout_alignBottom="@+id/income_type"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="43dp"
+            android:gravity="center" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="5dp"
+        android:background="#9a9a9a" />
+</LinearLayout>

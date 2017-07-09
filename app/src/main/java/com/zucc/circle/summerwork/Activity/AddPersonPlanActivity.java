@@ -79,7 +79,7 @@ public class AddPersonPlanActivity extends AppCompatActivity implements View.OnC
                 String current_date = cd.getYear() + "/" + (cd.getMonth()+1) + "/" + cd.getDay();
                 tv_person_plan_start_date.setText(current_date);
                 rl_calendarview.setVisibility(View.GONE);
-                month = cd.getMonth() + 1;
+                month = cd.getMonth();
                 day = cd.getDay();
                 break;
             case R.id.btn_check_time:
