@@ -31,8 +31,11 @@ public class FinancialActivity extends AppCompatActivity {
         vp = (ViewPager) findViewById(R.id.viewPager);
         vp.setAdapter(vpAdapter);
     }
+
     //从服务端获取收入记录
-    public void loadIncome() {
+    public int getProfit(List<String> incomes, List<String> expends) {
+        int result = 0;
+        return result;
     }
     public void fan(View v) {
         this.finish();

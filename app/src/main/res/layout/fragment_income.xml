@@ -5,6 +5,7 @@
     android:orientation="vertical"
     tools:context="com.zucc.circle.summerwork.Fragment.IncomeFragment">
     <Button
+        android:id="@+id/btn_add_income"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="添加收入"/>
