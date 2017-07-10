@@ -2,16 +2,20 @@ package com.zucc.circle.summerwork.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
@@ -39,7 +43,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private EditText et_regist_phonenumber, et_regist_username, et_regist_password, et_regist_check_password;
     private TextView tv_is_phone;
     private TextView tv_test;
-
+    private ImageView iv_wechat;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +63,33 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         et_regist_username = (EditText) findViewById(R.id.et_regist_username);
         tv_is_phone = (TextView) findViewById(R.id.is_phone);
         tv_test = (TextView) findViewById(R.id.test);
+        iv_wechat = (ImageView) findViewById(R.id.iv_wechat);
         btn_login.setOnClickListener(this);
         btn_regist.setOnClickListener(this);
         btn_login_app.setOnClickListener(this);
         btn_regist_app.setOnClickListener(this);
+        iv_wechat.setOnClickListener(this);
+//        sharedPreferences= getSharedPreferences("test",
+//                Activity.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        //用putString的方法保存数据
+//        editor.putBoolean("USER_ISLOGIN",true);
+//        editor.putString("USER_ID", "11111111");
+//        editor.putString("USER_PWD", "222222");
+//        //提交当前数据
+//        editor.commit();
+
+        sharedPreferences= getSharedPreferences("test",
+                Activity.MODE_PRIVATE);
+        String userId=sharedPreferences.getString("USER_ID","");
+        String userPwd=sharedPreferences.getString("USER_PWD","");
+        boolean isLogin=sharedPreferences.getBoolean("USER_ISLOGIN",false);
+        if(!isLogin) {
+            //判断用户是否登录
+            Log.e("","userId---->"+userId);
+            Log.e("","userPwd---->"+userPwd);
+            Log.e("","isLogin---->"+isLogin);
+        }
         et_regist_phonenumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -86,6 +114,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 }
             }
         });
+
+
     }
 
     @Override
@@ -102,6 +132,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_regist_app:
                 UserRegist();
+                break;
+            case R.id.iv_wechat:
+                wxLogin();
                 break;
             default:
                 break;
@@ -173,10 +206,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
     //向服务器发起登录请求
     public void Login(String phonenumber, String password) {
+
         //创建String请求；第一个参数是地址，第二个参数指定请求方法
         Request<String> request = NoHttp.createStringRequest(ContantUri.LOGIN_URL, RequestMethod.POST);
-        request.add("username","123456");
-        request.add("userpassword","1234567");
+        request.add("username", phonenumber);
+        request.add("userpassword", password);
         //创建请求队列
         RequestQueue queue = MyApplication.getmRequestQueue();
         //请求回调
@@ -191,7 +225,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             public void onSucceed(int what, Response<String> response) {
                 //请求成功时执行的方法
                 String json = response.get();
-                tv_test.setText(json.toString());
+                //tv_test.setText(json.toString());
 
             }
 
@@ -210,6 +244,40 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
     //向服务器发起注册请求
     public void Regist(String phonenumber, String username, String password) {
+        Request<String> request = NoHttp.createStringRequest(ContantUri.REGIST_URL, RequestMethod.POST);
+        RequestQueue queue = MyApplication.getmRequestQueue();
+        OnResponseListener<String> callBack = new OnResponseListener<String>() {
 
+            @Override
+            public void onStart(int what) {
+
+            }
+
+            @Override
+            public void onSucceed(int what, Response<String> response) {
+
+            }
+
+            @Override
+            public void onFailed(int what, Response<String> response) {
+
+            }
+
+            @Override
+            public void onFinish(int what) {
+
+            }
+        };
+        queue.add(0, request, callBack);
+    }
+    public void wxLogin() {
+        if (!MyApplication.mWxApi.isWXAppInstalled()) {
+            Log.d("","微信不存在");
+            return;
+        }
+        final SendAuth.Req req = new SendAuth.Req();
+        req.scope = "snsapi_userinfo";
+        req.state = "diandi_wx_login";
+        MyApplication.mWxApi.sendReq(req);
     }
 }

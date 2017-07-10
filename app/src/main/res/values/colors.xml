@@ -17,4 +17,7 @@
     <color name="text_clo">#333</color>
     <color name="blue">#419DE4</color>
     <color name="tou">#1e000000</color>
+    <color name="title_transparent_black">#22000000</color>
+    <color name="light_black">#141414</color>
+    <color name="line_and_outline_grey">#d9d9d9</color>
 </resources>

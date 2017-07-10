@@ -28,14 +28,16 @@
                 android:scaleType="fitCenter"
                 android:layout_centerVertical="true"
                 android:src="@drawable/fan" />
+
             <TextView
-                android:gravity="center"
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="添加任务"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:id="@+id/textView" />
+                android:textSize="20sp" />
+
             <com.rey.material.widget.TextView
                 android:id="@+id/btn_check_person_plan"
                 android:layout_width="wrap_content"
