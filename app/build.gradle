@@ -42,5 +42,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jaredrummler:material-spinner:1.0.4'
+    compile 'tech.linjiang:suitlines:1.1.0'
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.0.2'
     testCompile 'junit:junit:4.12'
 }

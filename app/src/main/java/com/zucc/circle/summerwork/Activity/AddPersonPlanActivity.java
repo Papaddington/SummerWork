@@ -27,7 +27,7 @@ public class AddPersonPlanActivity extends AppCompatActivity implements View.OnC
     private TextView tv_person_plan_start_date,tv_person_plan_start_time,btn_check_person_plan;
     private EditText et_note;
     private Button btn_check_date,btn_check_time;
-    private int month,day,hour,minute;
+    private int start_month,day,hour,minute;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +79,7 @@ public class AddPersonPlanActivity extends AppCompatActivity implements View.OnC
                 String current_date = cd.getYear() + "/" + (cd.getMonth()+1) + "/" + cd.getDay();
                 tv_person_plan_start_date.setText(current_date);
                 rl_calendarview.setVisibility(View.GONE);
-                month = cd.getMonth();
+                start_month = cd.getMonth();
                 day = cd.getDay();
                 break;
             case R.id.btn_check_time:
@@ -90,8 +90,8 @@ public class AddPersonPlanActivity extends AppCompatActivity implements View.OnC
                 minute = timePicker.getMinute();
                 break;
             case R.id.btn_check_person_plan:
-                et_note.setText("Month  "+ month + "Day  "+ day + "Hour  "+ hour + "Minute  "+ minute);
-                AlarmUtils.setAlarm(AddPersonPlanActivity.this, month, day, hour, minute, 001, "提醒ssssss");
+                et_note.setText("Month  "+ start_month + "Day  "+ day + "Hour  "+ hour + "Minute  "+ minute);
+                AlarmUtils.setAlarm(AddPersonPlanActivity.this, start_month, day, hour, minute, 001, "虚高是sb",0);
                 break;
             default:
                 break;

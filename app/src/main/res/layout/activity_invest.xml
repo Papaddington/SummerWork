@@ -7,6 +7,7 @@
     tools:context="com.zucc.circle.summerwork.Activity.InvestActivity">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -38,4 +39,18 @@
 
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
+    <tech.linjiang.suitlines.SuitLines
+        android:id="@+id/suitlines"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:xySize="8"
+        app:xyColor="@color/colorAccent"
+        app:lineType="curve"
+        app:needEdgeEffect="true"
+        app:colorEdgeEffect="@color/colorPrimaryDark"
+        app:needClickHint="true"
+        app:colorHint="@color/colorPrimary"
+        app:maxOfVisible="7"
+        app:countOfY="6"/>
 </RelativeLayout>

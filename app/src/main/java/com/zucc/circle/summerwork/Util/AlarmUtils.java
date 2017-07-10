@@ -41,9 +41,9 @@ public class AlarmUtils {
      * @param minute          分
      * @param id              闹钟的id
      * @param tips            闹钟提示信息
-     *
+     * @param flag            flag   flag = 1 闹钟开始  flag = 2 闹钟结束
      */
-    public static void setAlarm(Context context, int month, int day, int hour, int minute, int id, String tips) {
+    public static void setAlarm(Context context, int month, int day, int hour, int minute, int id, String tips,int flag) {
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Calendar calendar = Calendar.getInstance();
         calendar.set(calendar.get(Calendar.YEAR), month, day, hour, minute, 0);
