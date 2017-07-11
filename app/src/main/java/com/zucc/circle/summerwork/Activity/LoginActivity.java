@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.yanzhenjie.nohttp.NoHttp;
@@ -23,6 +24,7 @@ import com.yanzhenjie.nohttp.rest.Request;
 import com.yanzhenjie.nohttp.rest.RequestQueue;
 import com.yanzhenjie.nohttp.rest.Response;
 import com.zucc.circle.summerwork.Contants.ContantUri;
+import com.zucc.circle.summerwork.Entity.PersonEntity;
 import com.zucc.circle.summerwork.MainActivity;
 import com.zucc.circle.summerwork.MyApplication;
 import com.zucc.circle.summerwork.R;
@@ -44,6 +46,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private TextView tv_is_phone;
     private TextView tv_test;
     private ImageView iv_wechat;
+    public static PersonEntity appuser;
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,9 +175,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             //密码为空
             return;
         }
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
-        //Login(phonenumber, password);
+//        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//        startActivity(intent);
+        Login(phonenumber, password);
     }
     //判断注册逻辑
     public void UserRegist() {
@@ -209,7 +212,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         //创建String请求；第一个参数是地址，第二个参数指定请求方法
         Request<String> request = NoHttp.createStringRequest(ContantUri.LOGIN_URL, RequestMethod.POST);
-        request.add("username", phonenumber);
+        request.add("userphone", phonenumber);
         request.add("userpassword", password);
         //创建请求队列
         RequestQueue queue = MyApplication.getmRequestQueue();
@@ -225,8 +228,22 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             public void onSucceed(int what, Response<String> response) {
                 //请求成功时执行的方法
                 String json = response.get();
-                //tv_test.setText(json.toString());
-
+                try{
+                    JSONObject jsonObject = new JSONObject(json);
+                    String result = jsonObject.getString("result");
+                    if (result.equals("001")){
+                        JSONObject user = jsonObject.getJSONObject("user");
+                        Intent intent = new Intent();
+                        intent.setClass(LoginActivity.this,MainActivity.class);
+                        startActivity(intent);
+                    }else if (result.equals("002")){
+                        Toast.makeText(LoginActivity.this,"密码错误",Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(LoginActivity.this,"账号不存在",Toast.LENGTH_SHORT).show();
+                    }
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override

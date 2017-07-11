@@ -28,7 +28,7 @@ public class GroupAdapter extends ArrayAdapter<GroupEntity> {
         TextView groupName = (TextView) view.findViewById(R.id.item_group_name);
         TextView groupLeader = (TextView) view.findViewById(R.id.item_group_leader);
         groupName.setText(group.getGroupName());
-        groupLeader.setText(group.getGroupLeader().getName());
+        groupLeader.setText(group.getGroupLeader().getUsername());
         return view;
     }
 
