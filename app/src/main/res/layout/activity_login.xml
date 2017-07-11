@@ -223,6 +223,29 @@
                     android:textColor="@color/red"
                     android:text="用户名格式不正确"/>
                 <EditText
+                    android:id="@+id/et_regist_usermail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="邮箱"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="#9b9b9b"
+                    android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/is_user_mail"
+                    android:visibility="invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/red"
+                    android:text="邮箱格式不正确"/>
+
+                <EditText
                     android:id="@+id/et_regist_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -249,6 +272,16 @@
                     android:singleLine="true"
                     android:textColor="#9b9b9b"
                     android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/is_check_password"
+                    android:visibility="invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/red"
+                    android:text="两次密码输入不正确"/>
                 <Button
                     android:id="@+id/btn_regist_app"
                     android:layout_width="match_parent"

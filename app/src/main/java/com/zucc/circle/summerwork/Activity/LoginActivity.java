@@ -42,8 +42,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private LinearLayout ll_login, ll_regist;
     private Button btn_login_app, btn_regist_app;
     private EditText et_login_phonenumber, et_login_password;
-    private EditText et_regist_phonenumber, et_regist_username, et_regist_password, et_regist_check_password;
-    private TextView tv_is_phone;
+    private EditText et_regist_phonenumber, et_regist_username, et_regist_usermail, et_regist_password, et_regist_check_password;
+    private TextView tv_is_phone, tv_is_mail, tv_is_check_password;
     private TextView tv_test;
     private ImageView iv_wechat;
     public static PersonEntity appuser;
@@ -64,7 +64,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         et_regist_password = (EditText) findViewById(R.id.et_regist_password);
         et_regist_phonenumber = (EditText) findViewById(R.id.et_regist_phonenumber);
         et_regist_username = (EditText) findViewById(R.id.et_regist_username);
+        et_regist_usermail = (EditText) findViewById(R.id.et_regist_usermail);
         tv_is_phone = (TextView) findViewById(R.id.is_phone);
+        tv_is_mail = (TextView) findViewById(R.id.is_user_mail);
+        tv_is_check_password = (TextView) findViewById(R.id.is_check_password);
         tv_test = (TextView) findViewById(R.id.test);
         iv_wechat = (ImageView) findViewById(R.id.iv_wechat);
         btn_login.setOnClickListener(this);
@@ -117,8 +120,51 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 }
             }
         });
+        et_regist_usermail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
 
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String str="^[a-zA-Z][\\w\\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\\w\\.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z\\.]*[a-zA-Z]$";
+                Pattern p = Pattern.compile(str);
+                Matcher m = p.matcher(editable.toString());
+                if(!m.matches()) {
+                    tv_is_mail.setVisibility(View.VISIBLE);
+                }
+                else {
+                    tv_is_mail.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        et_regist_check_password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(!(et_regist_check_password.getText().toString().equals(et_regist_password.getText().toString()))) {
+                    tv_is_check_password.setVisibility(View.VISIBLE);
+                }
+                else {
+                    tv_is_check_password.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
     }
 
     @Override
@@ -169,43 +215,55 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         String password = et_login_password.getText().toString().trim();
         if (null == phonenumber || StringUtils.isEmpty(phonenumber)){
             //手机号为空
+            Toast.makeText(LoginActivity.this,"手机号不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
         if (null == password || StringUtils.isEmpty(password)){
             //密码为空
+            Toast.makeText(LoginActivity.this,"密码不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
-//        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
         Login(phonenumber, password);
     }
     //判断注册逻辑
     public void UserRegist() {
         String phonenumber = et_regist_phonenumber.getText().toString().trim();
+        String usermail = et_regist_usermail.getText().toString().trim();
         String password = et_regist_password.getText().toString().trim();
         String check_password = et_regist_check_password.getText().toString().trim();
         String username = et_regist_username.getText().toString().trim();
         if (null == phonenumber || StringUtils.isEmpty(phonenumber)){
-            //手机号为空
+            Toast.makeText(LoginActivity.this,"手机号不能为空",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (null == username || StringUtils.isEmpty(username)){
+            //邮箱为空
+            Toast.makeText(LoginActivity.this,"邮箱不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
         if (null == password || StringUtils.isEmpty(password)){
             //密码为空
+            Toast.makeText(LoginActivity.this,"密码不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
         if (null == check_password || StringUtils.isEmpty(check_password)){
             //再次密码为空
+            Toast.makeText(LoginActivity.this,"密码不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
         if (null == username || StringUtils.isEmpty(username)){
             //用户名为空
+            Toast.makeText(LoginActivity.this,"用户名不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
         if(!password.equals(check_password)) {
             //两次密码输入不一样
+            Toast.makeText(LoginActivity.this,"两次密码输入不相同",Toast.LENGTH_SHORT).show();
             return;
         }
-        Regist(phonenumber, username, password);
+        Regist(phonenumber, username, password, usermail);
     }
     //向服务器发起登录请求
     public void Login(String phonenumber, String password) {
@@ -260,8 +318,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         queue.add(0, request, callBack);
     }
     //向服务器发起注册请求
-    public void Regist(String phonenumber, String username, String password) {
+    public void Regist(String phonenumber, String username, String password, String usermail) {
         Request<String> request = NoHttp.createStringRequest(ContantUri.REGIST_URL, RequestMethod.POST);
+        request.add("","");
         RequestQueue queue = MyApplication.getmRequestQueue();
         OnResponseListener<String> callBack = new OnResponseListener<String>() {
 
@@ -272,7 +331,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             @Override
             public void onSucceed(int what, Response<String> response) {
-
+                Toast.makeText(LoginActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
+                switchLoginMenu();
             }
 
             @Override
@@ -287,6 +347,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         };
         queue.add(0, request, callBack);
     }
+
     public void wxLogin() {
         if (!MyApplication.mWxApi.isWXAppInstalled()) {
             Log.d("","微信不存在");

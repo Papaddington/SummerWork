@@ -2,6 +2,7 @@ package com.zucc.circle.summerwork;
 
 import android.app.Application;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -28,6 +29,7 @@ public class MyApplication extends Application {
 //        Logger.setTag("NoHttpSample"); // 设置NoHttp打印Log的TAG。
         mRequestQueue = NoHttp.newRequestQueue();
         registToWX();
+        SDKInitializer.initialize(this);
     }
 
     private void registToWX() {
