@@ -5,34 +5,54 @@ package com.zucc.circle.summerwork.Entity;
  */
 
 public class PersonEntity {
-    private String email;
-    private String phoneNumber;
-    private String name;
-    public PersonEntity(String personName) {
-        this.name = personName;
-    }
-    public String getEmail() {
-        return email;
+    private String userphone;
+    private String username;
+    private String userwxname;
+    private String usermailbox;
+    private String userstate;
+
+    public PersonEntity(String username){
+        this.username = username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+
+    public String getUserphone() {
+        return userphone;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public void setUserphone(String userphone) {
+        this.userphone = userphone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public String getUsername() {
+        return username;
     }
 
-    public String getName() {
-        return name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getUserwxname() {
+        return userwxname;
     }
 
+    public void setUserwxname(String userwxname) {
+        this.userwxname = userwxname;
+    }
+
+    public String getUsermailbox() {
+        return usermailbox;
+    }
+
+    public void setUsermailbox(String usermailbox) {
+        this.usermailbox = usermailbox;
+    }
+
+    public String getUserstate() {
+        return userstate;
+    }
+
+    public void setUserstate(String userstate) {
+        this.userstate = userstate;
+    }
 }
