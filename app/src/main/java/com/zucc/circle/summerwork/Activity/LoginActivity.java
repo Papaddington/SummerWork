@@ -225,8 +225,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             Toast.makeText(LoginActivity.this,"密码不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
         Login(phonenumber, password);
     }
     //判断注册逻辑
