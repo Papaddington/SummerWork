@@ -64,8 +64,9 @@
     <View style="@style/bg_line"/>
     <!-- 全圆角-->
     <LinearLayout style="@style/wrap_layout">
-        <LinearLayout style="@style/single_layout">
-            <TextView style="@style/usertext" android:text="辅助功能"/>
+        <LinearLayout style="@style/single_layout"
+            android:id="@+id/ll_daohang">
+            <TextView style="@style/usertext" android:text="导航功能"/>
             <ImageView style="@style/img_arrow"/>
         </LinearLayout>
 
