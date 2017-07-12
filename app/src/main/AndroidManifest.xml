@@ -64,6 +64,9 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".Activity.GroupActivity" />
 
+        <activity android:name=".Activity.PersonPlan" />
+        <activity android:name=".Activity.PersonPlanLog"></activity>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

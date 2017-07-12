@@ -1,50 +1,100 @@
 package com.zucc.circle.summerwork.Entity;
 
+import java.util.List;
+
 /**
  * Created by 圆圈 on 2017-07-05.
  */
 
 public class PersonPlanEntity {
-    public String title;
-    public String start_time;
-    public String end_time;
-    public String note;
+    private Integer schedulenumber;
+    private String schedulecontent;
+    private String schedulestart;
+    private String scheduleend;
+    private String scheduleuser;
+    private Integer schehulegroupid;
+    private Integer schehuleparent;
+    private String schehuletype;
+    private List<PersonPlanLogEntity> personPlanLogEntities;
+
     public PersonPlanEntity(String title, String start_time, String end_time) {
-        this.title = title;
-        this.start_time = start_time;
-        this.end_time = end_time;
+        this.schedulecontent = title;
+        this.schedulestart = start_time;
+        this.scheduleend = end_time;
+    }
+    public PersonPlanEntity(){
+
     }
 
-    public String getTitle() {
-        return title;
+    public List<PersonPlanLogEntity> getPersonPlanLogEntities() {
+        return personPlanLogEntities;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPersonPlanLogEntities(List<PersonPlanLogEntity> personPlanLogEntities) {
+        this.personPlanLogEntities = personPlanLogEntities;
     }
 
-    public String getStart_time() {
-        return start_time;
+    public Integer getSchedulenumber() {
+        return schedulenumber;
     }
 
-    public void setStart_time(String start_time) {
-        this.start_time = start_time;
+    public void setSchedulenumber(Integer schedulenumber) {
+        this.schedulenumber = schedulenumber;
     }
 
-    public String getEnd_time() {
-        return end_time;
+    public String getSchedulecontent() {
+        return schedulecontent;
     }
 
-    public void setEnd_time(String end_time) {
-        this.end_time = end_time;
+    public void setSchedulecontent(String schedulecontent) {
+        this.schedulecontent = schedulecontent;
     }
 
-    public String getNote() {
-        return note;
+    public String getSchedulestart() {
+        return schedulestart;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setSchedulestart(String schedulestart) {
+        this.schedulestart = schedulestart;
     }
 
+    public String getScheduleend() {
+        return scheduleend;
+    }
+
+    public void setScheduleend(String scheduleend) {
+        this.scheduleend = scheduleend;
+    }
+
+    public String getScheduleuser() {
+        return scheduleuser;
+    }
+
+    public void setScheduleuser(String scheduleuser) {
+        this.scheduleuser = scheduleuser;
+    }
+
+    public Integer getSchehulegroupid() {
+        return schehulegroupid;
+    }
+
+    public void setSchehulegroupid(Integer schehulegroupid) {
+        this.schehulegroupid = schehulegroupid;
+    }
+
+    public Integer getSchehuleparent() {
+        return schehuleparent;
+    }
+
+    public void setSchehuleparent(Integer schehuleparent) {
+        this.schehuleparent = schehuleparent;
+    }
+
+    public String getSchehuletype() {
+        return schehuletype;
+    }
+
+    public void setSchehuletype(String schehuletype) {
+        this.schehuletype = schehuletype;
+    }
 }

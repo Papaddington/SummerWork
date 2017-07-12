@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="断桥残雪"
+            android:id="@+id/username"
+            android:textSize="16sp"
+            android:textColor="#7992dd" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="夕阳西下，断桥残雪,夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪"
+            android:textSize="12sp"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+            <TextView
+                android:id="@+id/createTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/im_font_color_text_hint"
+                android:textSize="12sp"
+                android:text="20小时"/>
+
+            <TextView
+                android:id="@+id/deleteBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/im_selector_social_dig_name_bg"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="删除"
+                android:textColor="@color/color_8290AF"
+                android:textSize="12sp"
+                android:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

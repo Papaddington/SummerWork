@@ -46,12 +46,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private TextView tv_is_phone, tv_is_mail, tv_is_check_password;
     private TextView tv_test;
     private ImageView iv_wechat;
-    public static PersonEntity appuser;
+    private MyApplication myApplication;
+
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        myApplication = (MyApplication)this.getApplication();
         btn_login = (TextView) findViewById(R.id.btn_login);
         btn_regist = (TextView) findViewById(R.id.btn_regist);
         btn_login_app = (Button) findViewById(R.id.btn_login_app);
@@ -267,7 +269,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
     //向服务器发起登录请求
     public void Login(String phonenumber, String password) {
-
         //创建String请求；第一个参数是地址，第二个参数指定请求方法
         Request<String> request = NoHttp.createStringRequest(ContantUri.LOGIN_URL, RequestMethod.POST);
         request.add("userphone", phonenumber);
@@ -281,7 +282,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             public void onStart(int what) {
                 //发出请求时，开始执行的方法
             }
-
             @Override
             public void onSucceed(int what, Response<String> response) {
                 //请求成功时执行的方法
@@ -291,6 +291,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     String result = jsonObject.getString("result");
                     if (result.equals("001")){
                         JSONObject user = jsonObject.getJSONObject("user");
+                        PersonEntity appuser;
+                        appuser = new PersonEntity(user.getString("username"));
+                        appuser.setUsermailbox(user.getString("usermailbox"));
+                        appuser.setUserwxname(user.getString("userwxname"));
+                        myApplication.setUser(appuser);
                         Intent intent = new Intent();
                         intent.setClass(LoginActivity.this,MainActivity.class);
                         startActivity(intent);

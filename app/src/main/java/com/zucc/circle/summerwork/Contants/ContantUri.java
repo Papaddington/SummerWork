@@ -6,7 +6,8 @@ package com.zucc.circle.summerwork.Contants;
 
 public class ContantUri {
     public static final String NO_HTTP_URI = "http://api.nohttp.net";
-    public static final String URL = "http://192.168.1.10:8080";
-    public static final String LOGIN_URL = URL + "/PersonalManagement/User_login.action";
-    public static final String REGIST_URL = URL + "/PersonalManagement/User_register.action";
+    public static final String URL = "http://192.168.1.10:8080/PersonalManagement/";
+    public static final String LOGIN_URL = URL + "User_login.action";
+    public static final String REGIST_URL = URL + "User_register.action";
+    public static final String LOADPERSONPLAN_URL = URL + "Schedule_loadPersonalSchedule.action";
 }

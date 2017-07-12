@@ -1,5 +1,8 @@
 package com.zucc.circle.summerwork.Entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by 圆圈 on 2017-07-10.
  */
@@ -10,11 +13,20 @@ public class PersonEntity {
     private String userwxname;
     private String usermailbox;
     private String userstate;
+    private List<PersonPlanEntity> personPlanEntities;
 
     public PersonEntity(String username){
         this.username = username;
+        this.personPlanEntities = new ArrayList<>();
     }
 
+    public List<PersonPlanEntity> getPersonPlanEntities() {
+        return personPlanEntities;
+    }
+
+    public void setPersonPlanEntities(List<PersonPlanEntity> personPlanEntities) {
+        this.personPlanEntities = personPlanEntities;
+    }
 
     public String getUserphone() {
         return userphone;
