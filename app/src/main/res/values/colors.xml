@@ -20,4 +20,8 @@
     <color name="title_transparent_black">#22000000</color>
     <color name="light_black">#141414</color>
     <color name="line_and_outline_grey">#d9d9d9</color>
+    <color name="im_font_color_text_hint">#abb1b6</color>
+    <color name="im_social_dig_name_bg">#DDDDDD</color>
+    <color name="color_8290AF">#8290AF</color>
+    <color name="color_232323">#232323</color>
 </resources>

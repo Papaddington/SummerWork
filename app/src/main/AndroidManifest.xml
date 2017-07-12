@@ -46,8 +46,10 @@
         <activity android:name=".Activity.AddIncomeActivity" />
         <activity
             android:name=".Activity.ClockAlarmActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
-        <activity android:name=".Activity.GroupActivity"></activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".Activity.GroupActivity" />
+        <activity android:name=".Activity.PersonPlan" />
+        <activity android:name=".Activity.PersonPlanLog"></activity>
     </application>
 
 </manifest>
