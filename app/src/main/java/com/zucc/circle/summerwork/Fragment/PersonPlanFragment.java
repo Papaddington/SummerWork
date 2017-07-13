@@ -58,6 +58,7 @@ public class PersonPlanFragment extends Fragment implements View.OnClickListener
         planPresenter = new PlanPresenter();
         adapter.setPlanPresenter(planPresenter);
         loadPersonPlan();
+
         adapter = new PersonPlanAdapter(view.getContext(),R.layout.item_person_plan,myApplication.getUser().getPersonPlanEntities());
         lv_person_plan.setAdapter(adapter);
         return view;
@@ -90,6 +91,7 @@ public class PersonPlanFragment extends Fragment implements View.OnClickListener
             public void onSucceed(int what, Response<String> response) {
                 //请求成功时执行的方法
                 String json = response.get();
+
                 try{
                     JSONObject jsonObject = new JSONObject(json);
                     myApplication.getUser().getPersonPlanEntities().clear();

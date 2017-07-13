@@ -5,13 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.zucc.circle.summerwork.Activity.TestActivity">
+    <EditText
+        android:id="@+id/et_search_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="输入你要去的地方"
+        android:layout_marginStart="26dp"
+        android:layout_alignBaseline="@+id/button"
+        android:layout_alignBottom="@+id/button"
+        android:layout_alignParentStart="true" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="发起骑行导航"
         android:id="@+id/button"
         android:layout_marginLeft="71dp"
-        android:layout_marginStart="71dp"
-        android:layout_marginTop="147dp" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_marginTop="19dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="36dp" />
 </RelativeLayout>
