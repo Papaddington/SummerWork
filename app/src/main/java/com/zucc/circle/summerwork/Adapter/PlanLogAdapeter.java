@@ -7,8 +7,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.yanzhenjie.nohttp.NoHttp;
+import com.yanzhenjie.nohttp.RequestMethod;
+import com.yanzhenjie.nohttp.rest.OnResponseListener;
+import com.yanzhenjie.nohttp.rest.Request;
+import com.yanzhenjie.nohttp.rest.RequestQueue;
+import com.yanzhenjie.nohttp.rest.Response;
+import com.zucc.circle.summerwork.Activity.LoginActivity;
+import com.zucc.circle.summerwork.Activity.PersonPlanLogActivity;
+import com.zucc.circle.summerwork.Contants.ContantUri;
 import com.zucc.circle.summerwork.Entity.PersonPlanLogEntity;
+import com.zucc.circle.summerwork.MyApplication;
 import com.zucc.circle.summerwork.R;
+import com.zucc.circle.summerwork.presenter.LogPresenter;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by yuritian on 2017/7/12.
@@ -16,7 +31,13 @@ import com.zucc.circle.summerwork.R;
 
 public class PlanLogAdapeter extends BaseRecycleViewAdapter {
     private Context context;
-    public PlanLogAdapeter(Context context) {
+    private LogPresenter logPresenter;
+
+    public void setLogPresenter(LogPresenter logPresenter) {
+        this.logPresenter = logPresenter;
+    }
+
+    public PlanLogAdapeter(PersonPlanLogActivity personPlanLogActivity, Context context) {
         this.context = context;
     }
     @Override
@@ -30,16 +51,24 @@ public class PlanLogAdapeter extends BaseRecycleViewAdapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         PlanlogViewHolder holder = (PlanlogViewHolder) viewHolder;
-        PersonPlanLogEntity data = (PersonPlanLogEntity) datas.get(position);
+        final PersonPlanLogEntity data = (PersonPlanLogEntity) datas.get(position);
         holder.userName.setText(data.getLogwriter());
         holder.logContent.setText(data.getLogwrite());
         holder.logTime.setText(data.getLogdata());
+        holder.deleteLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logPresenter.deleLog(data.getLogid());
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return datas.size()+1;
+        return datas.size();
     }
+
+    
     public class PlanlogViewHolder extends RecyclerView.ViewHolder {
         public TextView userName;
         public TextView logContent;

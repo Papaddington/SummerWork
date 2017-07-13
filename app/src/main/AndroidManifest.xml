@@ -63,6 +63,7 @@
             android:name=".Activity.ClockAlarmActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".Activity.GroupActivity" />
+<<<<<<< HEAD
 
         <activity android:name=".Activity.PersonPlan" />
         <activity android:name=".Activity.PersonPlanLog"></activity>
@@ -77,6 +78,11 @@
             android:value="8Qoc7DO8oujmEb4e6pm7eVPSjWT8n100" />
 
         <activity android:name=".Activity.BNaviGuideActivity"></activity>
+=======
+        <activity android:name=".Activity.PersonPlanActivity" />
+        <activity android:name=".Activity.PersonPlanLogActivity" />
+        <activity android:name=".Activity.AddPersonPlanLogActivity"></activity>
+>>>>>>> 个人计划日志实现
     </application>
 
 </manifest>

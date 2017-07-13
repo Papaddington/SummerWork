@@ -295,6 +295,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                         appuser = new PersonEntity(user.getString("username"));
                         appuser.setUsermailbox(user.getString("usermailbox"));
                         appuser.setUserwxname(user.getString("userwxname"));
+                        appuser.setUserphone(user.getString("userphone"));
                         myApplication.setUser(appuser);
                         Intent intent = new Intent();
                         intent.setClass(LoginActivity.this,MainActivity.class);

@@ -23,6 +23,15 @@ public class MyApplication extends Application {
     }
     public static IWXAPI mWxApi;
     public PersonEntity user;
+    public static int selectPlan;
+
+    public int getSelectPlan() {
+        return selectPlan;
+    }
+
+    public void setSelectPlan(int selectPlan) {
+        this.selectPlan = selectPlan;
+    }
 
     public PersonEntity getUser() {
         return user;
