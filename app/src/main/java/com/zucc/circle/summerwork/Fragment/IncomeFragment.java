@@ -48,10 +48,7 @@ public class IncomeFragment extends Fragment implements View.OnClickListener{
         lv_income = (ListView) view.findViewById(R.id.lv_income);
         btn_add_income = (Button) view.findViewById(R.id.btn_add_income);
         incomeEntities = new ArrayList<>();
-//        incomeEntities.add(new IncomeEntity("第一桶金", "100", "投资", "无"));
-//        incomeEntities.add(new IncomeEntity("第一桶金", "100", "投资", "无"));
-//        incomeEntities.add(new IncomeEntity("第一桶金", "100", "投资", "无"));
-//        incomeEntities.add(new IncomeEntity("第一桶金", "100", "投资", "无"));
+        LoadIncomeList();
         incomeAdapter = new IncomeAdapter(view.getContext(), R.layout.item_income, incomeEntities);
         lv_income.setAdapter(incomeAdapter);
         btn_add_income.setOnClickListener(this);
@@ -59,7 +56,7 @@ public class IncomeFragment extends Fragment implements View.OnClickListener{
     }
     public void LoadIncomeList() {
         Request<String> request = NoHttp.createStringRequest(ContantUri.LOAD_PERSON_INCOME_URL, RequestMethod.POST);
-        request.add("incomeuserid",myApplication.getUser().getUserphone());
+        request.add("incomeuserid", myApplication.getUser().getUserphone());
         RequestQueue queue = MyApplication.getmRequestQueue();
         OnResponseListener<String> callBack = new OnResponseListener<String>() {
 
@@ -80,7 +77,7 @@ public class IncomeFragment extends Fragment implements View.OnClickListener{
                         incomeEntity.setName(income.getString("incomename"));
                         incomeEntity.setType(income.getString("incometype"));
                         incomeEntity.setMoney(income.getString("incomemoney"));
-                        incomeEntity.setStart_time(income.getString("incomedate"));
+                        incomeEntity.setStart_time(StringTime(income.getString("incomedate")));
                         incomeEntities.add(incomeEntity);
                     }
                 } catch (JSONException e) {
@@ -108,5 +105,10 @@ public class IncomeFragment extends Fragment implements View.OnClickListener{
                 intent.setClass(view.getContext(), AddIncomeActivity.class);
                 view.getContext().startActivity(intent);
         }
+    }
+    public String StringTime(String time){
+        time = time.replace("T","   ");
+        time = time.substring(0,time.length() - 3);
+        return time;
     }
 }

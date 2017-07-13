@@ -33,7 +33,9 @@
     </RelativeLayout>
     <LinearLayout style="@style/wrap_layout" >
         <!-- 上圆角-->
-        <LinearLayout style="@style/top_layout">
+        <LinearLayout
+            android:id="@+id/ll_ziliao"
+            style="@style/top_layout">
             <TextView style="@style/usertext" android:text="个人资料" />
             <ImageView style="@style/img_arrow"/>
         </LinearLayout>

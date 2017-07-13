@@ -48,10 +48,7 @@ public class ExpendFragment extends Fragment implements View.OnClickListener{
         lv_expend = (ListView) view.findViewById(R.id.lv_expend);
         btn_add_expend = (Button) view.findViewById(R.id.btn_add_expend);
         expendEntities = new ArrayList<>();
-//        expendEntities.add(new ExpendEntity("肯德基", "100", "吃饭", "无"));
-//        expendEntities.add(new ExpendEntity("肯德基", "100", "吃饭", "无"));
-//        expendEntities.add(new ExpendEntity("肯德基", "100", "吃饭", "无"));
-//        expendEntities.add(new ExpendEntity("肯德基", "100", "吃饭", "无"));
+        LoadExpendList();
         expendAdapter = new ExpendAdapter(view.getContext(), R.layout.item_expend, expendEntities);
         lv_expend.setAdapter(expendAdapter);
         btn_add_expend.setOnClickListener(this);
@@ -82,7 +79,7 @@ public class ExpendFragment extends Fragment implements View.OnClickListener{
                         expendEntity.setName(expend.getString("expendname"));
                         expendEntity.setType(expend.getString("expendtype"));
                         expendEntity.setMoney(expend.getString("expendmoney"));
-                        expendEntity.setStart_time(expend.getString("expenddate"));
+                        expendEntity.setStart_time(StringTime(expend.getString("expenddate")));
                         expendEntities.add(expendEntity);
                     }
                 } catch (JSONException e) {
@@ -112,5 +109,11 @@ public class ExpendFragment extends Fragment implements View.OnClickListener{
                 intent.setClass(view.getContext(), AddExpendActivity.class);
                 view.getContext().startActivity(intent);
         }
+    }
+
+    public String StringTime(String time){
+        time = time.replace("T","   ");
+        time = time.substring(0,time.length() - 3);
+        return time;
     }
 }

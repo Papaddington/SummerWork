@@ -55,8 +55,8 @@ public class PersonPlanFragment extends Fragment implements View.OnClickListener
         fab_add_person_plan.setOnClickListener(this);
         myApplication = (MyApplication)getActivity().getApplication();
         lv_person_plan = (ScrollListviewDelete) view.findViewById(R.id.lv_person_plan);
-        planPresenter = new PlanPresenter();
-        adapter.setPlanPresenter(planPresenter);
+//        planPresenter = new PlanPresenter();
+//        adapter.setPlanPresenter(planPresenter);
         loadPersonPlan();
 
         adapter = new PersonPlanAdapter(view.getContext(),R.layout.item_person_plan,myApplication.getUser().getPersonPlanEntities());

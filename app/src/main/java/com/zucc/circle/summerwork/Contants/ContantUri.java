@@ -19,7 +19,7 @@ public class ContantUri {
 
     public static final String LOAD_PERSON_INCOME_TYPE_URL = URL + "Income_loadIncomeType.action";
     public static final String LOAD_PERSON_INCOME_URL = URL + "Income_loadIncome.action";
-    public static final String ADD_PERSON_INCOME_URL = URL + "Income_ addIncome.action";
+    public static final String ADD_PERSON_INCOME_URL = URL + "Income_addIncome.action";
     public static final String LOAD_PERSON_EXPEND_TYPE_URL = URL + "Expend_loadExpendType.action";
     public static final String LOAD_PERSON_EXPEND_URL = URL + "Expend_loadExpend.action";
     public static final String ADD_PERSON_EXPEND_URL = URL + "Expend_addExpend.action";
