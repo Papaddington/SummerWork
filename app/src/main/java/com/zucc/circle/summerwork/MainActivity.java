@@ -17,6 +17,7 @@ import com.zucc.circle.summerwork.Fragment.PersonFinacialFragment;
 import com.zucc.circle.summerwork.Fragment.PersonPlanFragment;
 import com.zucc.circle.summerwork.Fragment.PersonZoneFragment;
 import com.zucc.circle.summerwork.Receiver.AlarmReceiver;
+import com.zucc.circle.summerwork.presenter.PlanPresenter;
 
 import java.util.Calendar;
 

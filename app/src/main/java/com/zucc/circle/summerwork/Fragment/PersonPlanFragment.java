@@ -39,7 +39,7 @@ import java.util.List;
 
 import it.neokree.materialtabs.MaterialTabHost;
 
-public class PersonPlanFragment extends Fragment implements View.OnClickListener,IPersonPlan{
+public class PersonPlanFragment extends Fragment implements View.OnClickListener{
     FloatingActionButton fab_add_person_plan;
     ScrollListviewDelete lv_person_plan;
     PersonPlanAdapter adapter;
@@ -55,11 +55,9 @@ public class PersonPlanFragment extends Fragment implements View.OnClickListener
         fab_add_person_plan.setOnClickListener(this);
         myApplication = (MyApplication)getActivity().getApplication();
         lv_person_plan = (ScrollListviewDelete) view.findViewById(R.id.lv_person_plan);
-        planPresenter = new PlanPresenter();
-        adapter.setPlanPresenter(planPresenter);
         loadPersonPlan();
-
         adapter = new PersonPlanAdapter(view.getContext(),R.layout.item_person_plan,myApplication.getUser().getPersonPlanEntities());
+        adapter.setUserid(myApplication.getUser().getUserphone());
         lv_person_plan.setAdapter(adapter);
         return view;
     }
@@ -135,68 +133,11 @@ public class PersonPlanFragment extends Fragment implements View.OnClickListener
         //将网络请求添加到请求队列中；第一个参数：请求的标识，标记是哪个请求；第二个参数：请求对象；第三个参数：回调对象
         queue.add(0, request, callBack);
     }
-    public void finishPersonPlan(int planid){
-        //创建String请求；第一个参数是地址，第二个参数指定请求方法
-        Request<String> request = NoHttp.createStringRequest(ContantUri.FINISHPERSONPLAN_URL, RequestMethod.POST);
-        //创建请求队列
-        RequestQueue queue = MyApplication.getmRequestQueue();
-        request.add("schedulenumber", planid);
-        //请求回调
-        OnResponseListener<String> callBack = new OnResponseListener<String>() {
-            //这些方法都运行在主线程中，可以直接更新界面，同时也意味着不能做耗时操作
-            @Override
-            public void onStart(int what) {
-                //发出请求时，开始执行的方法
-            }
-            @Override
-            public void onSucceed(int what, Response<String> response) {
-                //请求成功时执行的方法
-            }
-            @Override
-            public void onFailed(int what, Response<String> response) {
-                //请求失败时执行的方法
-            }
 
-            @Override
-            public void onFinish(int what) {
-                //请求结束时执行的方法
-            }
-        };
-        //将网络请求添加到请求队列中；第一个参数：请求的标识，标记是哪个请求；第二个参数：请求对象；第三个参数：回调对象
-        queue.add(0, request, callBack);
-    }
 
     public String StringTime(String time){
         time = time.replace("T","   ");
         time = time.substring(0,time.length() - 3);
         return time;
-    }
-
-    @Override
-    public void showLoading(String msg) {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showError(String errorMsg) {
-
-    }
-
-    @Override
-    public void finishPlan(int planid) {
-        finishPersonPlan(planid);
-        loadPersonPlan();
-        adapter.setPersonplans(myApplication.getUser().getPersonPlanEntities());
-        adapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void deletePlan(int planid) {
-
     }
 }
