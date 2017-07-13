@@ -11,6 +11,9 @@ public class ExpendEntity {
         this.type = type;
         this.note = note;
     }
+    public ExpendEntity() {
+
+    }
     String money;
     String name;
     String type;

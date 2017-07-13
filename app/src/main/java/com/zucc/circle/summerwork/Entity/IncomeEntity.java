@@ -13,6 +13,9 @@ public class IncomeEntity {
         this.note = note;
 
     }
+    public IncomeEntity() {
+
+    }
     String money;
     String name;
     String type;

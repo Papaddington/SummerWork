@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    app:layout_collapseParallaxMultiplier="1.0"
-    tools:context="com.zucc.circle.summerwork.Activity.AddIncomeActivity">
+    tools:context="com.zucc.circle.summerwork.Activity.AddExpendActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -38,12 +37,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="添加收入记录"
+                android:text="添加支出记录"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <com.rey.material.widget.TextView
-                android:id="@+id/btn_check_income"
+                android:id="@+id/btn_check_expend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/textView"
@@ -63,7 +62,7 @@
         android:gravity="center_vertical">
 
         <com.rey.material.widget.TextView
-            android:id="@+id/income_title"
+            android:id="@+id/expend_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -71,15 +70,14 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/et_income_title"
+            android:id="@+id/et_expend_title"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/income_title"
-            android:layout_alignBottom="@+id/income_title"
+            android:layout_alignBaseline="@+id/expend_title"
+            android:layout_alignBottom="@+id/expend_title"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="43dp"
             android:hint="输入款项"
-            android:inputType="number"
             android:textSize="20sp"></EditText>
     </RelativeLayout>
 
@@ -96,7 +94,7 @@
         android:gravity="center_vertical">
 
         <com.rey.material.widget.TextView
-            android:id="@+id/income_money"
+            android:id="@+id/expend_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -104,13 +102,14 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/et_income_money"
+            android:id="@+id/et_expend_money"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/income_money"
-            android:layout_alignBottom="@+id/income_money"
+            android:layout_alignBaseline="@+id/expend_money"
+            android:layout_alignBottom="@+id/expend_money"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="43dp"
+            android:inputType="number"
             android:hint="输入金额"
             android:textSize="20sp"></EditText>
     </RelativeLayout>
@@ -128,19 +127,19 @@
         android:gravity="center_vertical">
 
         <com.rey.material.widget.TextView
-            android:id="@+id/income_type"
+            android:id="@+id/expend_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:text="收入类型"
+            android:text="支出类型"
             android:textSize="20sp" />
 
         <com.jaredrummler.materialspinner.MaterialSpinner
-            android:id="@+id/sp_income_type"
+            android:id="@+id/sp_expend_type"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/income_type"
-            android:layout_alignBottom="@+id/income_type"
+            android:layout_alignBaseline="@+id/expend_type"
+            android:layout_alignBottom="@+id/expend_type"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="43dp" />
     </RelativeLayout>

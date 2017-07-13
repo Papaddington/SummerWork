@@ -94,9 +94,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         boolean isLogin=sharedPreferences.getBoolean("USER_ISLOGIN",false);
         if(!isLogin) {
             //判断用户是否登录
-            Log.e("","userId---->"+userId);
-            Log.e("","userPwd---->"+userPwd);
-            Log.e("","isLogin---->"+isLogin);
+            Log.e("","userId---->" + userId);
+            Log.e("","userPwd---->"+ userPwd);
+            Log.e("","isLogin---->"+ isLogin);
         }
         et_regist_phonenumber.addTextChangedListener(new TextWatcher() {
             @Override
@@ -225,6 +225,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             Toast.makeText(LoginActivity.this,"密码不能为空",Toast.LENGTH_SHORT).show();
             return;
         }
+//        Intent intent = new Intent();
+//        intent.setClass(LoginActivity.this,MainActivity.class);
+//        startActivity(intent);
         Login(phonenumber, password);
     }
     //判断注册逻辑
@@ -291,6 +294,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                         JSONObject user = jsonObject.getJSONObject("user");
                         PersonEntity appuser;
                         appuser = new PersonEntity(user.getString("username"));
+                        appuser.setUserphone(user.getString("userphone"));
                         appuser.setUsermailbox(user.getString("usermailbox"));
                         appuser.setUserwxname(user.getString("userwxname"));
                         myApplication.setUser(appuser);
@@ -322,8 +326,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     }
     //向服务器发起注册请求
     public void Regist(String phonenumber, String username, String password, String usermail) {
-        Request<String> request = NoHttp.createStringRequest(ContantUri.REGIST_URL, RequestMethod.POST);
-        request.add("","");
+        final Request<String> request = NoHttp.createStringRequest(ContantUri.REGIST_URL, RequestMethod.POST);
+        request.add("username", username);
+        request.add("userpassword", password);
+        request.add("userphone", phonenumber);
+        request.add("usermail", usermail);
         RequestQueue queue = MyApplication.getmRequestQueue();
         OnResponseListener<String> callBack = new OnResponseListener<String>() {
 
@@ -334,8 +341,20 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             @Override
             public void onSucceed(int what, Response<String> response) {
-                Toast.makeText(LoginActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
-                switchLoginMenu();
+
+                String json = response.get();
+                try {
+                    JSONObject jsonObject = new JSONObject(json);
+                    String result = jsonObject.getString("result");
+                    Toast.makeText(LoginActivity.this, result, Toast.LENGTH_SHORT).show();
+                    if(result.equals("注册成功")) {
+                        switchLoginMenu();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
             }
 
             @Override
