@@ -12,9 +12,10 @@ public class PersonPlanEntity {
     private String schedulestart;
     private String scheduleend;
     private String scheduleuser;
-    private Integer schehulegroupid;
-    private Integer schehuleparent;
-    private String schehuletype;
+    private Integer schedulegroupid;
+    private Integer scheduleparent;
+    private String scheduletype;
+    private String scheduleremark;
     private List<PersonPlanLogEntity> personPlanLogEntities;
 
     public PersonPlanEntity(String title, String start_time, String end_time) {
@@ -26,12 +27,12 @@ public class PersonPlanEntity {
 
     }
 
-    public List<PersonPlanLogEntity> getPersonPlanLogEntities() {
-        return personPlanLogEntities;
+    public String getScheduleremark() {
+        return scheduleremark;
     }
 
-    public void setPersonPlanLogEntities(List<PersonPlanLogEntity> personPlanLogEntities) {
-        this.personPlanLogEntities = personPlanLogEntities;
+    public void setScheduleremark(String scheduleremark) {
+        this.scheduleremark = scheduleremark;
     }
 
     public Integer getSchedulenumber() {
@@ -74,27 +75,35 @@ public class PersonPlanEntity {
         this.scheduleuser = scheduleuser;
     }
 
-    public Integer getSchehulegroupid() {
-        return schehulegroupid;
+    public Integer getSchedulegroupid() {
+        return schedulegroupid;
     }
 
-    public void setSchehulegroupid(Integer schehulegroupid) {
-        this.schehulegroupid = schehulegroupid;
+    public void setSchedulegroupid(Integer schedulegroupid) {
+        this.schedulegroupid = schedulegroupid;
     }
 
-    public Integer getSchehuleparent() {
-        return schehuleparent;
+    public Integer getScheduleparent() {
+        return scheduleparent;
     }
 
-    public void setSchehuleparent(Integer schehuleparent) {
-        this.schehuleparent = schehuleparent;
+    public void setScheduleparent(Integer scheduleparent) {
+        this.scheduleparent = scheduleparent;
     }
 
-    public String getSchehuletype() {
-        return schehuletype;
+    public String getScheduletype() {
+        return scheduletype;
     }
 
-    public void setSchehuletype(String schehuletype) {
-        this.schehuletype = schehuletype;
+    public void setScheduletype(String scheduletype) {
+        this.scheduletype = scheduletype;
+    }
+
+    public List<PersonPlanLogEntity> getPersonPlanLogEntities() {
+        return personPlanLogEntities;
+    }
+
+    public void setPersonPlanLogEntities(List<PersonPlanLogEntity> personPlanLogEntities) {
+        this.personPlanLogEntities = personPlanLogEntities;
     }
 }

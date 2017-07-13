@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.zucc.circle.summerwork.Activity.PersonPlanLog">
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -61,5 +60,6 @@
         app:layout_moreProgress="@layout/view_more_progress"
         app:recyclerClipToPadding="true"
         app:scrollbarStyle="outsideOverlay"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar" />
 </RelativeLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -23,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="夕阳西下，断桥残雪,夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪夕阳西下，断桥残雪"
-            android:textSize="12sp"
+            android:textSize="24sp"
             android:visibility="visible" />
 
         <LinearLayout
@@ -52,4 +53,4 @@
                 android:visibility="visible" />
         </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+</android.support.v7.widget.CardView>

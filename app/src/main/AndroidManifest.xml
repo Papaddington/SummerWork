@@ -65,8 +65,8 @@
             android:name=".Activity.ClockAlarmActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".Activity.GroupActivity" />
-        <activity android:name=".Activity.PersonPlanActivity" />
-        <activity android:name=".Activity.PersonPlanLogActivity" />
+
+
 
         <service
             android:name="com.baidu.location.f"
@@ -77,7 +77,12 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="8Qoc7DO8oujmEb4e6pm7eVPSjWT8n100" />
 
-        <activity android:name=".Activity.BNaviGuideActivity" />
+
+        <activity android:name=".Activity.BNaviGuideActivity"></activity>
+        <activity android:name=".Activity.PersonPlanActivity" />
+        <activity android:name=".Activity.PersonPlanLogActivity" />
+        <activity android:name=".Activity.AddPersonPlanLogActivity"></activity>
+
         <activity android:name=".Activity.AddExpendActivity"></activity>
     </application>
 
