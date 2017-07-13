@@ -23,4 +23,5 @@ public class ContantUri {
     public static final String LOAD_PERSON_EXPEND_TYPE_URL = URL + "Expend_loadExpendType.action";
     public static final String LOAD_PERSON_EXPEND_URL = URL + "Expend_loadExpend.action";
     public static final String ADD_PERSON_EXPEND_URL = URL + "Expend_addExpend.action";
+    public static final String GET_EARNING_URL = URL + "Income_earnings.action";
 }

@@ -51,6 +51,7 @@
             android:id="@+id/textView2" />
 
         <TextView
+            android:id="@+id/tv_profit"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:text="160元"

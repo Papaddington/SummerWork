@@ -68,6 +68,7 @@ public class IncomeFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onSucceed(int what, Response<String> response) {
                 String json = response.get();
+                Toast.makeText(getView().getContext(),json,Toast.LENGTH_SHORT).show();
                 try {
                     JSONObject jsonObject = new JSONObject(json);
                     JSONArray incomes = jsonObject.getJSONArray("incomes");
@@ -111,4 +112,5 @@ public class IncomeFragment extends Fragment implements View.OnClickListener{
         time = time.substring(0,time.length() - 3);
         return time;
     }
+
 }

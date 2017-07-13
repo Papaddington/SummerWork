@@ -289,13 +289,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 String json = response.get();
                 try{
                     JSONObject jsonObject = new JSONObject(json);
-                    String result = jsonObject.getString("result");
-                    if (result.equals("001")){
-                        JSONObject user = jsonObject.getJSONObject("user");
-                        PersonEntity appuser;
-                        appuser = new PersonEntity(user.getString("username"));
-                        appuser.setUserphone(user.getString("userphone"));
-                        appuser.setUsermailbox(user.getString("usermailbox"));
+                        String result = jsonObject.getString("result");
+                        if (result.equals("001")){
+                            JSONObject user = jsonObject.getJSONObject("user");
+                            PersonEntity appuser;
+                            appuser = new PersonEntity(user.getString("username"));
+                            appuser.setUserphone(user.getString("userphone"));
+                            appuser.setUsermailbox(user.getString("usermailbox"));
                         appuser.setUserwxname(user.getString("userwxname"));
                         appuser.setUserphone(user.getString("userphone"));
                         myApplication.setUser(appuser);
