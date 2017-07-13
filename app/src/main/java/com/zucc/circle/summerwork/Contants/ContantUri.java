@@ -12,7 +12,8 @@ public class ContantUri {
     public static final String ADD_PERSON_PLAN_URL = URL + "Schedule_addSchedule.action";
     public static final String LOADPERSONPLAN_URL = URL + "Schedule_loadPersonalSchedule.action";
 
-    public static final String FINISHPERSONPLAN_URL = URL + "Schedule_finishSchedule";
+    public static final String FINISHPERSONPLAN_URL = URL + "Schedule_finishSchedule.action";
+    public static final String DELETEPERSONPLAN_URL = URL + "Schedule_deleteSchedule.action";
     public static final String LOADLOG_URL = URL + "Log_loadLog.action";
     public static final String ADDLOG_URL = URL + "Log_addLog.action";
     public static final String DELETELOG_URL = URL + "Log_deleteLog.action";

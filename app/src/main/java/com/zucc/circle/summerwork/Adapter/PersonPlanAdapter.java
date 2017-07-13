@@ -27,6 +27,11 @@ import com.zucc.circle.summerwork.MyApplication;
 import com.zucc.circle.summerwork.R;
 import com.zucc.circle.summerwork.presenter.PlanPresenter;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,12 +41,26 @@ import java.util.List;
 public class PersonPlanAdapter extends ArrayAdapter<PersonPlanEntity> {
     private int resource;
     private Context context;
-    List<PersonPlanEntity> personplans;
-    private PlanPresenter planPresenter;
+    private List<PersonPlanEntity> personplans;
+    private String userid;
+    private String finishType;
 
-    public void setPlanPresenter(PlanPresenter planPresenter) {
-        this.planPresenter = planPresenter;
+    public String getFinishType() {
+        return finishType;
     }
+
+    public void setFinishType(String finishType) {
+        this.finishType = finishType;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public List<PersonPlanEntity> getPersonplans() {
+        return personplans;
+    }
+
     public void setPersonplans(List<PersonPlanEntity> personplans) {
         this.personplans = personplans;
     }
@@ -52,7 +71,7 @@ public class PersonPlanAdapter extends ArrayAdapter<PersonPlanEntity> {
         this.personplans = personplans;
     }
     public View getView(final int position, View convertView, ViewGroup parent) {
-        PersonPlanEntity personplan = getItem(position);
+        final PersonPlanEntity personplan = getItem(position);
         View view = LayoutInflater.from(getContext()).inflate(resource,null);
         TextView person_plan_title = (TextView)view.findViewById(R.id.person_plan_title);
         TextView person_plan_time_start = (TextView)view.findViewById(R.id.person_plan_time_start);
@@ -61,13 +80,21 @@ public class PersonPlanAdapter extends ArrayAdapter<PersonPlanEntity> {
         Button btn_Into = (Button)view.findViewById(R.id.btn_Into);
         Button btn_Delete = (Button)view.findViewById(R.id.btn_Delete);
         Button btn_Nao = (Button)view.findViewById(R.id.btn_Nao);
+        btn_Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deletePersonPlan(personplan.getSchedulenumber());
+                personplans.remove(position);
+                notifyDataSetChanged();
+            }
+        });
         if (!personplan.getScheduletype().equals("未完成")){
             btn_Nao.setEnabled(false);
         }
         btn_Nao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                finishPersonPlan(personplan.getSchedulenumber(),position);
             }
         });
         btn_Into.setOnClickListener(new View.OnClickListener() {
@@ -85,4 +112,79 @@ public class PersonPlanAdapter extends ArrayAdapter<PersonPlanEntity> {
         person_plan_time_end.setText(personplan.getScheduleend());
         return view;
     }
+    public void deletePersonPlan(int planid){
+        //创建String请求；第一个参数是地址，第二个参数指定请求方法
+        Request<String> request = NoHttp.createStringRequest(ContantUri.DELETEPERSONPLAN_URL, RequestMethod.POST);
+        //创建请求队列
+        RequestQueue queue = MyApplication.getmRequestQueue();
+        request.add("schedulenumber", planid);
+        //请求回调
+        OnResponseListener<String> callBack = new OnResponseListener<String>() {
+            //这些方法都运行在主线程中，可以直接更新界面，同时也意味着不能做耗时操作
+            @Override
+            public void onStart(int what) {
+                //发出请求时，开始执行的方法
+            }
+            @Override
+            public void onSucceed(int what, Response<String> response) {
+                //请求成功时执行的方法
+            }
+            @Override
+            public void onFailed(int what, Response<String> response) {
+                //请求失败时执行的方法
+            }
+
+            @Override
+            public void onFinish(int what) {
+                //请求结束时执行的方法
+            }
+        };
+        //将网络请求添加到请求队列中；第一个参数：请求的标识，标记是哪个请求；第二个参数：请求对象；第三个参数：回调对象
+        queue.add(0, request, callBack);
+    }
+
+    public void finishPersonPlan(int planid, final int position){
+        //创建String请求；第一个参数是地址，第二个参数指定请求方法
+        Request<String> request = NoHttp.createStringRequest(ContantUri.FINISHPERSONPLAN_URL, RequestMethod.POST);
+        //创建请求队列
+        RequestQueue queue = MyApplication.getmRequestQueue();
+        request.add("schedulenumber", planid);
+        //请求回调
+        OnResponseListener<String> callBack = new OnResponseListener<String>() {
+            //这些方法都运行在主线程中，可以直接更新界面，同时也意味着不能做耗时操作
+            @Override
+            public void onStart(int what) {
+                //发出请求时，开始执行的方法
+            }
+            @Override
+            public void onSucceed(int what, Response<String> response) {
+                //请求成功时执行的方法
+                String json = response.get();
+                try{
+                    JSONObject jsonObject = new JSONObject(json);
+                    String result = jsonObject.getString("result");
+                    if (result.equals("001")){
+                        personplans.get(position).setScheduletype("按时完成");
+                    }else {
+                        personplans.get(position).setScheduletype("超时完成");
+                    }
+                    notifyDataSetChanged();
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailed(int what, Response<String> response) {
+                //请求失败时执行的方法
+            }
+
+            @Override
+            public void onFinish(int what) {
+                //请求结束时执行的方法
+            }
+        };
+        //将网络请求添加到请求队列中；第一个参数：请求的标识，标记是哪个请求；第二个参数：请求对象；第三个参数：回调对象
+        queue.add(0, request, callBack);
+    }
+
 }

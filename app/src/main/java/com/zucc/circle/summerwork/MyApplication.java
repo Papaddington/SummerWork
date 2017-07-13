@@ -24,6 +24,7 @@ public class MyApplication extends Application {
     public static IWXAPI mWxApi;
     public PersonEntity user;
     public static int selectPlan;
+    public static String type;
 
     public int getSelectPlan() {
         return selectPlan;
