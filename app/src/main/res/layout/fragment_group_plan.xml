@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.zucc.circle.summerwork.Fragment.GroupPlanFragment">
+
     <ListView
         android:id="@+id/lv_group"
         android:layout_width="match_parent"

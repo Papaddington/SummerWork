@@ -79,7 +79,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="43dp"
             android:hint="输入款项"
-            android:inputType="number"
+            android:inputType="text"
             android:textSize="20sp"></EditText>
     </RelativeLayout>
 
@@ -112,6 +112,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="43dp"
             android:hint="输入金额"
+            android:inputType="number"
             android:textSize="20sp"></EditText>
     </RelativeLayout>
 

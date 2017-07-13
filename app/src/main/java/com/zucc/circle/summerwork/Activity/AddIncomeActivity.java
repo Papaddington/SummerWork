@@ -1,9 +1,9 @@
 package com.zucc.circle.summerwork.Activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,13 +17,10 @@ import com.yanzhenjie.nohttp.rest.Request;
 import com.yanzhenjie.nohttp.rest.RequestQueue;
 import com.yanzhenjie.nohttp.rest.Response;
 import com.zucc.circle.summerwork.Contants.ContantUri;
-import com.zucc.circle.summerwork.Entity.PersonEntity;
-import com.zucc.circle.summerwork.MainActivity;
 import com.zucc.circle.summerwork.MyApplication;
 import com.zucc.circle.summerwork.R;
 import com.zucc.circle.summerwork.Util.StringUtils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,21 +32,18 @@ public class AddIncomeActivity extends Activity implements View.OnClickListener{
     EditText et_income_title, et_income_money;
     TextView btn_check_income;
     List<String> incomeTypes;
+    private MyApplication myApplication;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_income);
+        myApplication = (MyApplication) getApplication();
         LoadIncomeType();
         sp_income_type = (MaterialSpinner) findViewById(R.id.sp_income_type);
         et_income_title = (EditText) findViewById(R.id.et_income_title);
         et_income_money = (EditText) findViewById(R.id.et_income_money);
         btn_check_income = (TextView) findViewById(R.id.btn_check_income);
-        sp_income_type.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-
-            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-                Snackbar.make(view, "Clicked " + item, Snackbar.LENGTH_LONG).show();
-            }
-        });
+        btn_check_income.setOnClickListener(this);
     }
     @Override
     public void onClick(View view) {
@@ -118,18 +112,21 @@ public class AddIncomeActivity extends Activity implements View.OnClickListener{
     public void userAddIncome() {
         String incomeTitle = et_income_title.getText().toString();
         String incomeMoney = et_income_money.getText().toString();
+        String incomeType = sp_income_type.getText().toString();
         if(incomeTitle == null || StringUtils.isEmpty(incomeTitle)) {
             return;
         }
         if(incomeMoney == null || StringUtils.isEmpty(incomeMoney)) {
             return;
         }
-
+        addIncome(incomeTitle, incomeMoney, incomeType);
     }
-    public void addIncome(String icomeTitle, String incomeMoney) {
-        Request<String> request = NoHttp.createStringRequest(ContantUri.LOGIN_URL, RequestMethod.POST);
-        request.add("incomeTitle", icomeTitle);
-        request.add("incomeMoney", incomeMoney);
+    public void addIncome(String incomeTitle, String incomeMoney, String incomeType) {
+        Request<String> request = NoHttp.createStringRequest(ContantUri.ADD_PERSON_INCOME_URL, RequestMethod.POST);
+        request.add("Incomename", incomeTitle);
+        request.add("Incomemoney", incomeMoney);
+        request.add("Incometype", incomeType);
+        request.add("Incomeuserid",myApplication.getUser().getUserphone());
         //创建请求队列
         RequestQueue queue = MyApplication.getmRequestQueue();
         //请求回调
@@ -143,14 +140,13 @@ public class AddIncomeActivity extends Activity implements View.OnClickListener{
             @Override
             public void onSucceed(int what, Response<String> response) {
                 //请求成功时执行的方法
-                String json = response.get();
-                //tv_test.setText(json.toString());
-
+                Toast.makeText(AddIncomeActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailed(int what, Response<String> response) {
                 //请求失败时执行的方法
+                Toast.makeText(AddIncomeActivity.this, "添加失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -161,6 +157,5 @@ public class AddIncomeActivity extends Activity implements View.OnClickListener{
         //将网络请求添加到请求队列中；第一个参数：请求的标识，标记是哪个请求；第二个参数：请求对象；第三个参数：回调对象
         queue.add(0, request, callBack);
     }
-
 
 }

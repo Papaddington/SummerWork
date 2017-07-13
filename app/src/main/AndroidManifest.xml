@@ -39,13 +39,7 @@
         <activity
             android:name=".Activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
         <activity
             android:name=".Activity.AddPersonPlanActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -66,8 +60,6 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".Activity.GroupActivity" />
 
-
-
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
@@ -77,13 +69,20 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="8Qoc7DO8oujmEb4e6pm7eVPSjWT8n100" />
 
-
-        <activity android:name=".Activity.BNaviGuideActivity"></activity>
+        <activity android:name=".Activity.BNaviGuideActivity" />
         <activity android:name=".Activity.PersonPlanActivity" />
         <activity android:name=".Activity.PersonPlanLogActivity" />
-        <activity android:name=".Activity.AddPersonPlanLogActivity"></activity>
+        <activity android:name=".Activity.AddPersonPlanLogActivity" />
+        <activity android:name=".Activity.AddExpendActivity" />
+        <activity android:name=".Activity.PersonDataActivity" />
+        <activity android:name=".Activity.TransitActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".Activity.AddExpendActivity"></activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.AddGroupActivity"></activity>
     </application>
 
 </manifest>

@@ -5,8 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Debug;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.baidu.location.Address;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -32,7 +29,6 @@ import com.baidu.mapapi.cloud.CloudRgcResult;
 import com.baidu.mapapi.cloud.CloudSearchResult;
 import com.baidu.mapapi.cloud.DetailSearchResult;
 import com.baidu.mapapi.cloud.LocalSearchInfo;
-import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.model.LatLng;
 import com.zucc.circle.summerwork.R;
 import java.util.ArrayList;
@@ -61,7 +57,7 @@ public class TestActivity extends Activity implements CloudListener{
         setContentView(R.layout.activity_test);
         Button button = (Button) findViewById(R.id.button);
         et_search_address = (EditText) findViewById(R.id.et_search_address);
-        et_search_address.setText("体育");
+        et_search_address.setText("西溪");
        /*-----------------初始化组件完毕------------------*/
 
        /*-----------------创建本地位置监听----------------*/
@@ -75,7 +71,6 @@ public class TestActivity extends Activity implements CloudListener{
                 searchInfo(et_search_address.getText().toString());
                 LatLng startPt = new LatLng(30.326678, 120.164154);
                 LatLng endPt = new LatLng(lati, longa);
-
                 param = new BikeNaviLauchParam().stPt(startPt).endPt(endPt);
                 startBikeNavi();
             }

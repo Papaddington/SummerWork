@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.yanzhenjie.nohttp.NoHttp;
@@ -16,8 +17,8 @@ import com.yanzhenjie.nohttp.rest.Response;
 import com.zucc.circle.summerwork.Contants.ContantUri;
 import com.zucc.circle.summerwork.MyApplication;
 import com.zucc.circle.summerwork.R;
+import com.zucc.circle.summerwork.Util.StringUtils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,10 +30,12 @@ public class AddExpendActivity extends AppCompatActivity implements View.OnClick
     EditText et_expend_title, et_expend_money;
     TextView btn_check_expend;
     List<String> expendTypes;
+    private MyApplication myApplication;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expend);
+        myApplication = (MyApplication) getApplication();
         loadExpendType();
         et_expend_title = (EditText) findViewById(R.id.et_expend_title);
         et_expend_money = (EditText) findViewById(R.id.et_expend_money);
@@ -45,6 +48,7 @@ public class AddExpendActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_check_expend:
+                userAddExpend();
                 break;
             default:
                 break;
@@ -56,8 +60,7 @@ public class AddExpendActivity extends AppCompatActivity implements View.OnClick
         this.finish();
     }
 
-    public List<String> loadExpendType() {
-        final List<String> result = new ArrayList<>();
+    public void loadExpendType() {
         Request<String> request = NoHttp.createStringRequest(ContantUri.LOAD_PERSON_EXPEND_TYPE_URL, RequestMethod.POST);
         //创建请求队列
         RequestQueue queue = MyApplication.getmRequestQueue();
@@ -103,7 +106,52 @@ public class AddExpendActivity extends AppCompatActivity implements View.OnClick
         };
         //将网络请求添加到请求队列中；第一个参数：请求的标识，标记是哪个请求；第二个参数：请求对象；第三个参数：回调对象
         queue.add(0, request, callBack);
-        return result;
     }
+    public void userAddExpend() {
+        String expendTitle = et_expend_title.getText().toString();
+        String expendMoney = et_expend_money.getText().toString();
+        String expendType = sp_expend_type.getText().toString();
+        if(expendTitle == null || StringUtils.isEmpty(expendTitle)) {
+            return;
+        }
+        if(expendMoney == null || StringUtils.isEmpty(expendMoney)) {
+            return;
+        }
+        AddExpend(expendTitle, expendMoney, expendType);
+    }
+    public void AddExpend(String expendTitle, String expendMoney, String expendType) {
+        Request<String> request = NoHttp.createStringRequest(ContantUri.ADD_PERSON_EXPEND_URL, RequestMethod.POST);
+        request.add("Expendname", expendTitle);
+        request.add("Expendmoney", expendMoney);
+        request.add("Expendtype", expendType);
+        request.add("Expenduserid",myApplication.getUser().getUserphone());
+        //创建请求队列
+        RequestQueue queue = MyApplication.getmRequestQueue();
+        //请求回调
+        OnResponseListener<String> callBack = new OnResponseListener<String>() {
+            //这些方法都运行在主线程中，可以直接更新界面，同时也意味着不能做耗时操作
+            @Override
+            public void onStart(int what) {
+                //发出请求时，开始执行的方法
+            }
 
+            @Override
+            public void onSucceed(int what, Response<String> response) {
+                //请求成功时执行的方法
+                Toast.makeText(AddExpendActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailed(int what, Response<String> response) {
+                //请求失败时执行的方法
+            }
+
+            @Override
+            public void onFinish(int what) {
+                //请求结束时执行的方法
+            }
+        };
+        //将网络请求添加到请求队列中；第一个参数：请求的标识，标记是哪个请求；第二个参数：请求对象；第三个参数：回调对象
+        queue.add(0, request, callBack);
+    }
 }
